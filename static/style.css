@@ -1,0 +1,242 @@
+/* Style pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("images/cc.jpg");
+    color: #333;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e23d3d;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 19px;
+    margin-left: 10px;
+
+   
+}
+.auth-buttons a:hover{
+    background:rgb(248, 248, 248);;
+  }
+
+.container {
+    text-align: center;
+    margin: 60px auto;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+   
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#Analyser{
+    position: relative;
+    bottom: -450px;
+    right: -350px;
+    margin-right: 25px;
+    font-size: 16px;
+}
+#video-input{
+    display: none;
+   
+}
+.custom-file-upload {
+    color: #fff; /* Couleur du texte */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+
+
+/* Style pour le formulaire */
+
+
+/* Style pour le bouton */
+button {
+    background-color:#2196F3;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    margin: -40px;
+    cursor: pointer;
+    border-radius: 5px;
+    size: 0px;
+    position: relative;
+    top: 464px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    position: relative;
+}
+.aa {
+    cursor: pointer;
+    position: relative;
+    right: -10px;
+}
+#choose-file-text{
+    background: #1e88e5;
+    border: 3px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 18px;
+}
+/* Style pour la vidéo */
+#uploaded-video {
+    width: 500px; /* Largeur de la vidéo */
+    height: 350px;
+    border-radius: 10px; /* Coins arrondis */
+    border: 2px solid #ccc; /* Bordure */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    position: relative;
+    top: -3px;
+    display: none;
+}/* Style pour le texte de progression */
+
+/* Style pour la barre de contrôles vidéo */
+#video-controls {
+    margin-top: 20px;
+}
+
+/* Style pour les boutons de contrôle vidéo */
+#video-controls button {
+    margin-right: 10px;
+}
+#result {
+    color: black;
+    margin-top: 20px;
+    padding: 5px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    font-size: 20px;
+    width: 84%;
+    text-align: center;
+    position: relative;
+    top: 446px;
+    left: 115px;
+    background-color: lightblue;
+    height: 45px;
+}
+.upload-section {
+    background-image: url("images/A3.jfif");
+    padding: 20px;
+    border-radius: 5px;
+    color:white;
+}
+.upload-section p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+.upload-section a {
+    text-decoration: none;
+    background: #1e88e5;
+    border: 3px;
+    color: white;
+    padding: 6px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 15px;
+
+
+}
+.arrow-down {
+    display: inline-block;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    align-items: center;
+    border: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 12px;
+    position: relative;
+    top: 14px;
+    right: 3px;
+    background: #1E88E5;
+    font-size: 14px;
+
+}
+h1 {
+    color: #1976D2;
+    font-size: 28px;
+}
+.signup {
+    border: 1px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #ad0606;
+    background-color: #1e88e5;
+    
+}
+video {
+    width: 100%;
+    height: auto;
+}
+/* Barre de progression */
+/* Barre de progression */
+.progress-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    margin-top: 9px;
+    height: 20px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 20px; /* same as height of progress bar */
+    color: white;
+    border-radius: 5px;
+}
+.logo {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    background-image: none;
+}

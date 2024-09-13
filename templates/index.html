@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface utilisateur</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="{{ url_for('static', filename='aaaa.png') }}" alt="Violence detection"></div>
+            <div class="auth-buttons">
+                <a href="{{ url_for('singin') }}" class="signup">login</a>
+            </div>
+        </nav>
+    </header>  
+    <div class="container">
+        <h1>Discover the  Violence Here <br>
+        </h1>
+        <div class="upload-section">
+            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="video" id="video-input" accept="video/*" required style="display: none;">
+                <label for="video-input" class="custom-file-upload">
+                    <span id="choose-file-text">Choose files</span>
+                    <span class="arrow-down">&#9660;</span>
+                    <p>Drop the files here. 100 MB maximum file size  </p>
+                </label>
+                <button type="submit" id="analyser" style="display: none;">Analyze the video</button>
+            </form>
+            <div id="result" style="display: none;"></div>
+
+            <div id="video-container">
+                <label for="video-input" class="aa"></label>        
+                <video id="uploaded-video" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <a href="/webcam">Use Webcam</a>
+            
+            <!-- Barre de progression -->
+            <div class="progress-container" style="display: none;">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const videoInput = document.getElementById('video-input');
+        const uploadedVideo = document.getElementById('uploaded-video');
+        const chooseFileText = document.getElementById('choose-file-text');
+        const resultDiv = document.getElementById('result');
+        const analyserButton = document.getElementById('analyser');
+        
+        videoInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('video/')) {
+                resultDiv.style.display = 'block';
+                analyserButton.style.display = 'block';
+                const videoContainer = document.getElementById('video-container');
+                videoContainer.innerHTML = ''; // Clear any existing video
+
+                const video = document.createElement('video');
+                video.controls = true;
+                video.src = URL.createObjectURL(file);
+
+                videoContainer.appendChild(video);
+            }
+            const url = URL.createObjectURL(file);
+            uploadedVideo.src = url;
+        });
+
+        chooseFileText.addEventListener('click', function() {
+            videoInput.click();
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const progressContainer = document.querySelector('.progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            
+            const updateProgress = (percent) => {
+                progressBar.style.width = percent + '%';
+                progressBar.textContent = percent + '%';
+            };
+
+            // Simulate progress (0-100% over 10 seconds for demonstration)
+            const simulateProgress = () => {
+                let percent = 0;
+                const interval = setInterval(() => {
+                    percent += 10;
+                    if (percent > 100) {
+                        clearInterval(interval);
+                        updateProgress(100);
+                    } else {
+                        updateProgress(percent);
+                    }
+                }, 1000);
+            };
+
+            simulateProgress();
+
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            resultDiv.innerText = `result: ${result.result}`;
+            resultDiv.style.display = 'block';
+        });
+
+        const socket = io();
+        
+        socket.on('progress', (data) => {
+            const percent = data.percent;
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = percent + '%';
+            progressBar.textContent = percent + '%';
+        });
+    </script>
+</body>
+</html>

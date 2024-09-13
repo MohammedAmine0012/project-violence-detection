@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webcam Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <script>
+        function fetchResults() {
+            fetch('/results')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = "Violence Detection Result: " + data.result;
+                });
+        }
+
+        setInterval(fetchResults, 1000);  // Fetch results every second
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='aaaa.png') }}" alt="Violence detection">
+            </div>
+            <div class="auth-buttons">
+                <a class="signup">Login</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>Webcam Feed</h1>
+        <div id="video">
+            <img src="{{ url_for('video_feed') }}" width="640" height="480" alt="Webcam feed">
+        </div>
+        <div id="results">
+            <h2 id="result">Violence Detection Result:</h2>
+        </div>
+    </main>
+</body>
+</html>
